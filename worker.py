@@ -20,4 +20,9 @@ channel.basic_consume(callback,
                       no_ack=False)
 
 print(' [*] Waiting for messages from {}...'.format(args.queue))
-channel.start_consuming()
+try:
+    channel.start_consuming()
+except KeyboardInterrupt:
+    pass
+
+connection.close()
